@@ -595,6 +595,11 @@
 					if (window.chrome && window.chrome.loadTimes && typeof window.chrome.loadTimes().firstPaintTime === 'number') {
 						performanceTiming.chromeFirstPaint = Math.round(window.chrome.loadTimes().firstPaintTime * 1000);
 					}
+					// Add the entries if exists
+					if (!!window.performance.getEntries){
+						var arrEntries = lodash.clone(performance.getEntries());
+						performanceTiming.performanceRessourceTimingEntries = arrEntries;
+					}
 
 					context = context || [];
 					context.push({
